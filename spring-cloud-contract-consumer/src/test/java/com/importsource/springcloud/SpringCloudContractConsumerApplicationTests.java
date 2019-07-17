@@ -1,6 +1,7 @@
 package com.importsource.springcloud;
 
 
+import com.importsource.springcloud.common.Customer;
 import com.importsource.springcloud.common.Page;
 import org.junit.Assert;
 import org.junit.Test;
@@ -33,5 +34,13 @@ public class SpringCloudContractConsumerApplicationTests {
         ResponseEntity<Page> responseEntity =
                 restTemplate.exchange("http://localhost:8080/api/customers", HttpMethod.GET, null, ptf);
         Assert.assertEquals("size error!", 2, responseEntity.getBody().getData().size());
+    }
+
+
+    @Test
+    public void testGetCustomer() {
+        ResponseEntity<Customer> responseEntity =
+                restTemplate.exchange("http://localhost:8080/api/customer", HttpMethod.GET, null, Customer.class);
+        System.out.println(responseEntity.getBody());
     }
 }
